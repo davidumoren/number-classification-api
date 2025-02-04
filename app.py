@@ -44,7 +44,7 @@ def classify_number():
     
     # Input validation
     if not number:
-        return jsonify({"number": None, "error": True}), 400
+        return jsonify({"number": None, "error": True, "message": "Missing number parameter"}), 400
     
     # Strip leading/trailing spaces and check if the input is a valid number
     number = number.strip()
@@ -54,7 +54,7 @@ def classify_number():
         # Convert to int if it's a whole number (e.g., 42.0 -> 42)
         number_int = int(number_float) if number_float.is_integer() else number_float
     except ValueError:
-        return jsonify({"number": number, "error": True}), 400
+        return jsonify({"number": number, "error": True, "message": "Invalid number input"}), 400
     
     properties = []
     
@@ -76,7 +76,7 @@ def classify_number():
         "is_perfect": is_perfect(abs(number_int)) if isinstance(number_int, int) else False,
         "properties": properties,
         "digit_sum": digit_sum(number_int) if isinstance(number_int, int) else None,
-        "fun_fact": get_fun_fact(number_int)
+        "fun_fact": get_fun_fact(number_int) if isinstance(number_int, int) else "No fun fact available."
     }
     
     return jsonify(response), 200
@@ -84,3 +84,6 @@ def classify_number():
 # Run the Flask app
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
+
+# Run the Flask app
