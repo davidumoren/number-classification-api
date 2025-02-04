@@ -56,10 +56,9 @@ def classify_number():
     except ValueError:
         return jsonify({"number": number, "error": True}), 400
     
-    # Initialize properties list
     properties = []
     
-    # Check if the number is Armstrong (only for integers)
+    # Only check Armstrong if the number is an integer
     if isinstance(number_int, int) and is_armstrong(number_int):
         properties.append("armstrong")
     
@@ -75,7 +74,7 @@ def classify_number():
         "number": number_int,
         "is_prime": is_prime(abs(number_int)) if isinstance(number_int, int) else False,
         "is_perfect": is_perfect(abs(number_int)) if isinstance(number_int, int) else False,
-        "properties": properties,  # Correctly populated with only the expected properties
+        "properties": properties,
         "digit_sum": digit_sum(number_int) if isinstance(number_int, int) else None,
         "fun_fact": get_fun_fact(number_int)
     }
@@ -84,4 +83,4 @@ def classify_number():
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)  # Run the app on all available IPs and port 5000
+    app.run(host='0.0.0.0', port=5000)
