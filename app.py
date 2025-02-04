@@ -58,7 +58,7 @@ def classify_number():
     
     properties = []
     
-    # Only check Armstrong if the number is an integer
+    # Check if the number is Armstrong (only for integers)
     if isinstance(number_int, int) and is_armstrong(number_int):
         properties.append("armstrong")
     
@@ -68,6 +68,10 @@ def classify_number():
             properties.append("even")
         else:
             properties.append("odd")
+    
+    # Ensure the properties list only contains allowed values
+    allowed_properties = ["armstrong", "odd", "even"]
+    properties = [prop for prop in properties if prop in allowed_properties]
     
     # Prepare the response
     response = {
