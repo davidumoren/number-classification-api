@@ -75,4 +75,4 @@ def classify_number():
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5004)  # Run the app on all available IPs and port 5000
+    app.run(host='0.0.0.0', port=5000)  # Run the app on all available IPs and port 5000
